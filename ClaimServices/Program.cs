@@ -6,7 +6,8 @@ namespace ClaimServices
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ClaimsUI claims = new ClaimsUI();
+            claims.Start();
         }
     }
 }

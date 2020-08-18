@@ -12,7 +12,7 @@ namespace ClaimServices
 
         }
 
-        public Claims(int claimid, claimTypes claimtypes, string description, double claimamount, DateTime dateofincedent, DateTime dateofclaim, bool isvalid)
+        public Claims(int claimid, claimTypes claimtypes, string description, double claimamount, DateTime dateofincedent, DateTime dateofclaim)
         {
             ClaimID = claimid;
             ClaimTypes = claimtypes;
@@ -20,7 +20,6 @@ namespace ClaimServices
             ClaimAmount = claimamount;
             DateOfIncident = dateofincedent;
             DateOfClaim = dateofclaim;
-            isValid = isvalid;
         }
 
 
@@ -33,7 +32,20 @@ namespace ClaimServices
         public DateTime DateOfIncident { get; set; }
 
         public DateTime DateOfClaim { get; set; }
-        public bool isValid { get; set; }
+        public bool isValid { 
+            get 
+            {
+                int days = ((TimeSpan)(DateOfClaim - DateOfIncident)).Days;
+                //Console.WriteLine(days);
+                if (days > 30)
+                {
+                    return false;
+                } else
+                {
+                    return true;
+                }
+            }  
+        }
     }
 
     public enum claimTypes
